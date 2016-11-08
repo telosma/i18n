@@ -1,50 +1,181 @@
 <!doctype html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+        <title>I18N</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides" id="sl-1">
+                <section>
+                    <h2>Internationalization-I18n</h2>
+                    <img style="width: 200px; height: 200px; border:none;" src="images/logo-fr.png" alt="logo-fr">
+                    <br>
+                    <i style="font-size: 22px;">Present by: Le Xuan Duy</i>
+                </section>
+                <section class="fragments" id="sl-2">
+                    <h3>Internationalization là gì?</h3>
+                    <br>
+                    <article class="fragment">
+                        <ul>
+                            <li>
+                                Ứng dụng có thể hiện thị nội dung đa ngôn ngữ
+                            </li>
+                            <li class="fragment">
+                                Phù hợp với với user của từng vùng, từng ngôn ngữ khác nhau
+                            </li>
+                            <li class="fragment">
+                                Translate cùng một thành phần nội dung bằng nhiều ngôn ngữ
+                            </li>
+                        </ul>
+                    </article>
+                </section>
+                <section class="fragments">
+                    <h2>Có thể translate những gì</h2>
+                    <p class="fragment">interface translation</p>
+                    <p class="fragment">content</p>
+                    <p class="fragment">url routing</p>
+                    <aside class="notes">
+                        This slide has fragments which are also stepped through in the notes window.
+                    </aside>
+                </section>
+                <section>
+                    <h2>Interface translation</h2>
+                    <p>Ví dụ</p>
+                    <a href="https://viblo.asia/">Viblo.asia</a>
+                </section>
+                <section class="fragments">
+                    <h2>Localization trong Laravle</h2>
+                    <p class="fragment">Files ngôn ngữ: <span class="fragment">trong folder app/lang</span></p>
+                    <code class="markdown fragment">
+                        <!-- <article class="hljs"> -->
+                            <img src="images/5.png" width="400" height="200">
+                        <!-- </article> -->
+                    </code>
+                </section>
+                <section>
+                    <h2>Localization trong Laravle</h2>
+                    <pre>
+                        <code class="hljs markdown">
+                        //label.php
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+                        return array(
+                            'login' => 'Login',
+                            'register' => 'Register,
+                        );
+                        </code>
+                    </pre>
+                </section>
+                <section>
+                    <h2>Localization trong Laravel</h2>
+                    <h4>Lựa chọn key</h4>
+                    <ul>
+                        <li>Cẩn thận</li>
+                        <li>Key không tồn tại dữ liệu vẫn được trả về</li>
+                        <li>Dạng tham số mình truyền vào  <span class="hljs markdown">label.abc</span></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>Localization trong Laravel</h2>
+                    <h3>Set up Language</h3>
+                    <ul class="fragments">
+                        <li class="fragment">Default language sẽ được được set trong app/config/app.php</li>
+                        <img class="fragment" src="images/6.png" width="600" height="400">
+                    </ul>
+                </section>
+                <section>
+                    <h2>Localization trong Laravel</h2>
+                    <h3>Set up Language</h3>
+                    <p class="hljs markdown">
+                        App::setLocale('vn');
+                    </p>
+                </section>
+                <section>
+                    <h2>Localization trong Laravel</h2>
+                    <p>Truy tới dòng dữ liệu thông qua <span style="color: pink">get()</span> của <span style="color: pink">Lang::class</span></p>
+                    <p class="hljs markdown">
+                        echo Lang::get('label.login');
+                        <br>
+                        >> Login
+                    </p>
+                </section>
+                <section>
+                    <h2>Localization trong Laravel</h2>
+                    <h3>Key - value trong language files</h3>
+                    <ul>
+                        <li>
+                            key có thể chỉ truy vấn tới một value
+                        </li>
+                        <li>
+                            key có thể chỉ truy vấn tới một mảng key-value khác
+                        </li>
+                    </ul>
+                    <img src="images/7.png" width="400" height="150">
+                </section>
+                <section>
+                    <h2>Localization trong Laravel</h2>
+                    <h3>"pipe" characters</h3>
+                    <img src="images/8.png" width="500" height="200">
+                    <br>
+                    <p class="hljs markdown">echo Lang::choice('messages.comment', $numComment, ['num' => $numComment]);</p>
+                </section>
+                <section>
+                    <h2>Localization trong Laravel</h2>
+                    <h3>"pipe" characters</h3>
+                    <li>Tùy chọn cụ thể</li>
+                    <p>//comments.php</p>
+                    <p class="hljs markdown">
+                        'comment' => '{0} There are none|[1,19] There are some|[20,Inf] There are many'
+                    </p>
+                    <p class="hljs markdown">
+                        echo Lang::choice('messages.comment', $numComment, ['num' => $numComment]);
+                    </p>
+                </section>
+                <section>
+                    <h2>Triển khai ứng dụng</h2>
+                    <h3>Giải pháp</h3>
+                    <ul>
+                        <li>Sử dụng middleware hanlde các requests đến</li>
+                        <li>If Session[‘locale’] is set, use it</li>
+                        <li>Use default language</li>
+                    </ul>
+                </section>
+            </div>
+        </div>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
 
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
 </html>
