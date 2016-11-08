@@ -148,13 +148,15 @@
                         echo Lang::choice('messages.comment', $numComment, ['num' => $numComment]);
                     </p>
                 </section>
-                <section>
+                <section class="fragments">
                     <h2>Triển khai ứng dụng</h2>
                     <h3>Giải pháp</h3>
                     <ul>
-                        <li>Sử dụng middleware hanlde các requests đến</li>
-                        <li>If Session[‘locale’] is set, use it</li>
-                        <li>Use default language</li>
+                        <li class="fragment">Sử dụng middleware hanlde các requests đến</li>
+                        <li class="fragment">If User đăng nhập
+Set Session::(‘locale’, $user->lang)</li>
+                        <li class="fragment">If Session[‘locale’] is set, use it</li>
+                        <li class="fragment">Use default language</li>
                     </ul>
                 </section>
             </div>
